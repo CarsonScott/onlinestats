@@ -1,6 +1,6 @@
 from .util import *
 
-class StatisticalModel:
+class Model:
 
 	def __init__(self, variables, avg_estimator, dev_estimator, cov_estimator):
 		self.values=[]
