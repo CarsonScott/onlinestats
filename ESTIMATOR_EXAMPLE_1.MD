@@ -1,6 +1,6 @@
 # Example #1
 
-In this example, we run a simple estimator 500 times with a constant observation of 3.
+In the first estimator example, we run a simple estimator 500 times with a constant observation of 3.
 
 	steps = 500
 	observation = 3
@@ -27,9 +27,11 @@ Output:
 
 As you can see the estimates eventually converge, more or less. The estimates oscillate around the targets because the estimator is constantly making adjustments. This allows it to change readily if the targets begin to change, as is the case in most real-world applications.
 
+---
+
 # Example #2
 
-In this example, we run a simple estimator 500 times with a constant observation of 3, just like the first example.
+In this example, we run a simple estimator 500 times with a constant observation of 3, just like in the first example.
 
 	steps = 500
 	observation = 3
@@ -54,4 +56,4 @@ We graph the estimates as well as the targets over time. Since we used a constan
 Output:
 ![Estimator Results #1](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_2.png)
 
-As you can see the estimates eventually converge, and do so faster than those in the first example.  
+As you can see the estimates eventually converge, and do so faster than those in the first example. The benefit of using a delta limit is that it keeps the acceleration from reaching too high of a value at any given time. This allows overcorrections to be fixed sooner than they would if the acceleration was not restricted. The downside of using a delta limit is of course that it takes longer to accelerate toward the target value, but this tradeoff tends to pay off in the long run. 
