@@ -17,4 +17,4 @@ The acceleration of an estimator at any given time is the difference in value be
 [Estimator Example #1](https://github.com/CarsonScott/onlinestats/blob/master/ESTIMATOR_EXAMPLE_1.MD)
 
 ***
-
+## Statistical Models
