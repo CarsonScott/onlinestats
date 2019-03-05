@@ -22,8 +22,7 @@ At each step we collect the current estimate. Because at each point the estimato
 
 We graph the estimates as well as the targets over time. Since we used a constant observation in this example, the targets are represented by a straight line.
 
-Output:
-![Estimator Results #1](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1.png)
+![Estimator Results 1](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1.png)
 
 As you can see the estimates eventually converge, more or less. The estimates oscillate around the targets because the estimator is constantly making adjustments. This allows it to change readily if the targets begin to change, as is the case in most real-world applications.
 
@@ -53,7 +52,10 @@ At each step we collect the current estimate. Because at each point the estimato
 
 We graph the estimates as well as the targets over time. Since we used a constant observation in this example, the targets are represented by a straight line.
 
-Output:
-![Estimator Results #1](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_2.png)
+![Estimator Results 2](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_2.png)
 
 As you can see the estimates eventually converge, and do so faster than those in the first example. The benefit of using a delta limit is that it keeps the acceleration from reaching too high of a value at any given time. This allows overcorrections to be fixed sooner than they would if the acceleration was not restricted. The downside of using a delta limit is of course that it takes longer to accelerate toward the target value, but this tradeoff tends to pay off in the long run. 
+
+For comparison, here is a graph of the first and second examples:
+
+![Estimator Results 1 and 2](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1_and_2.png)
