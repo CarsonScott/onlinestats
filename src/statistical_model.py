@@ -1,114 +1,67 @@
 from .util import *
 
-class StatisticalModel(Graph):
+class StatisticalModel:
 
-	def __init__(self, variables, mean_estimator, deviation_estimator, covariance_estimator):
-		super().__init__()
-		self.create_attribute('link', 'covariance_estimator')
-		self.create_attribute('link', 'covariance')
-		self.create_schema('variable', ['mean_estimator', 'deviation_estimator', 'mean', 'deviation'])
+	def __init__(self, variables, avg_estimator, dev_estimator, cov_estimator):
+		self.values=[]
+		self.averages=[]
+		self.deviations=[]
+		self.covariances=[]
+		self.avg_estimators=[]
+		self.dev_estimators=[]
+		self.cov_estimators=[]
+		for i in range(variables):
+			self.values.append(0)
+			self.averages.append(0)
+			self.deviations.append(0)
+			self.covariances.append([])
+			self.avg_estimators.append(copy(avg_estimator))
+			self.dev_estimators.append(copy(dev_estimator))
+			self.cov_estimators.append([])
+			for j in range(variables):
+				self.covariances[i].append(0)
+				if j>=i:
+					self.cov_estimators[i].append(copy(cov_estimator))
+				else:self.cov_estimators[i].append(None)
 
-		if isinstance(variables, int):
-			for i in range(variables):
-				key=self.create_key('variable')
-				self.create_object('variable', key, [copy(mean_estimator), copy(deviation_estimator), 0, 0])
-		elif isinstance(variables, list):
-			for key in variables:
-				self.create_object('variable', key, [copy(mean_estimator), copy(deviation_estimator), 0, 0])
-		for i in self.get_variables():
-			for j in self.get_variables():
-				self.create_link(i, j, [copy(covariance_estimator), 0])
+	def update_value(self, index, value):
+		self.values[index]=value
 
-	def get_variables(self):
-		return self.get_instances('variable')
+	def update_average(self, index):
+		value=self.values[index]
+		estimator=self.avg_estimators[index]
+		average=estimator.update(value)
+		self.averages[index]=average
 
-	def get_means(self):
-		keys=self.get_variables()
-		return [self[key, 'mean'] for key in keys]
+	def update_deviation(self, index):
+		value=self.values[index]
+		average=self.averages[index]
+		x=pow(value-average, 2)
+		estimator=self.dev_estimators[index]
+		deviation=estimator.update(x)
+		deviation=math.sqrt(deviation) if deviation > 0 else 0
+		self.deviations[index]=deviation
 
-	def get_deviations(self):
-		keys=self.get_variables()
-		return [self[key, 'deviation'] for key in keys]
-
-	def get_covariances(self):
-		keys=self.get_variables()
-		return [[self.get_covariance(source, target) for target in keys] for source in keys]
-
-	def get_mean_estimator(self, key):
-		return self[key, 'mean_estimator']
-	
-	def get_deviation_estimator(self, key):
-		return self[key, 'deviation_estimator']
-
-	def get_covariance_estimator(self, source, target):
-		return self[self.get_key(source, target), 'covariance_estimator']
-
-	def get_mean(self, key):
-		return self[key, 'mean']
-
-	def get_deviation(self, key):
-		return self[key, 'deviation']
-
-	def get_covariance(self, source, target):
-		return self[self.get_key(source, target), 'covariance']
-
-	def set_mean_estimator(self, key, mean_estimator):
-		self[key, 'mean_estimator']=mean_estimator
-
-	def set_deviation_estimator(self, key, deviation_estimator):
-		self[key, 'deviation_estimator']=deviation_estimator
-
-	def set_covariance_estimator(self, source, target, covariance_estimator):
-		self[self.get_key(source, target), 'deviation_estimator']=covariance_estimator
-
-	def set_mean(self, key, mean):
-		self[key, 'mean']=mean
-
-	def set_deviation(self, key, deviation):
-		self[key, 'deviation']=deviation
-
-	def set_covariance(self, source, target, covariance):
-		self[self.get_key(source, target), 'covariance']=covariance
-
-	def update_mean(self, key):
-		value=self.get_value(key)
-		estimator=self.get_mean_estimator(key)
-		mean=estimator.update(value)
-		self.set_mean_estimator(key, estimator)
-		self.set_mean(key, mean)
-
-	def update_deviation(self, key):
-		value=self.get_value(key)
-		mean=self.get_mean(key)
-		input=pow(value-mean, 2)
-		estimator=self.get_deviation_estimator(key)
-		estimate=estimator.update(input)
-		deviation=math.sqrt(estimate) if estimate>0 else estimate
-		self.set_deviation_estimator(key, estimator)
-		self.set_deviation(key, deviation)
-
-	def update_covariance(self, source, target):
-		source_value=self.get_value(source)
-		target_value=self.get_value(target)
-		source_mean=self.get_mean(source)
-		target_mean=self.get_mean(target)
-		source_deviation=self.get_deviation(source)
-		target_deviation=self.get_deviation(target)
-		input=(source_value-source_mean)*(target_value-target_mean)
-		input=input/(source_deviation*target_deviation) if source_deviation*target_deviation!=0 else input
-		estimator=self.get_covariance_estimator(source, target)
-		covariance=estimator.update(input)
-		self.set_covariance_estimator(source, target, estimator)
-		self.set_covariance(source, target, covariance)
+	def update_covariance(self, index1, index2):
+		value1=self.values[index1]
+		value2=self.values[index2]
+		average1=self.averages[index1]
+		average2=self.averages[index2]
+		deviation1=self.deviations[index1]
+		deviation2=self.deviations[index2]
+		numerator=(value1-average1)*(value2-average2)
+		denominator=deviation1*deviation2
+		x=numerator/denominator if denominator!=0 else numerator
+		estimator=self.cov_estimators[index1][index2]
+		covariance=estimator.update(x)
+		self.covariances[index1][index2]=covariance
+		self.covariances[index2][index1]=covariance
 
 	def update(self, values):
-		keys=self.get_variables()
-		for i in range(len(keys)):
-			key=keys[i]
-			value=values[i]
-			self.set_value(key, value)
-			self.update_mean(key)
-			self.update_deviation(key)
-		for source in keys:
-			for target in keys:
-				self.update_covariance(source, target)
+		self.values=values
+		for i in range(len(self.values)):
+			self.update_average(i)
+			self.update_deviation(i)
+		for i in range(len(self.values)):
+			for j in range(i, len(self.values)):
+				self.update_covariance(i,j)
