@@ -2,6 +2,8 @@
 
 In the first estimator example, we run a simple estimator 500 times with a constant observation of 3.
 
+	from onlinestats import Estimator
+
 	steps = 500
 	observation = 3
 	estimator = Estimator(learning_rate=0.1, decay_rate=0.1)
@@ -31,6 +33,8 @@ As you can see the estimates eventually converge, more or less. The estimates os
 # Example #2
 
 In this example, we run a simple estimator 500 times with a constant observation of 3, just like in the first example.
+
+	from onlinestats import Estimator
 
 	steps = 500
 	observation = 3
