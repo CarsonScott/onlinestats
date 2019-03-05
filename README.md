@@ -42,4 +42,4 @@ At each step we collect the current estimate. We may now graph the results.
 	targets = [target for i in range(steps)]
 	plt.plot(targets, color='black')
 	plt.plot(estimates, color='red')
-  plt.show()
+  	plt.show()
