@@ -28,7 +28,7 @@ We then update the model 1000 times by iterating through the set of samples. At 
 	plt.colorbar()
 	plt.show()
 
-We graph the covariance matrix at the final time step. Given the samples we had previously defined, we should expect to see positive covariances between variables 0 and 2, as well as 1 and 3. We should expect to see mixed covariances between variable 4 and all other variables, as well as 5 and all other variables.
+We graph the covariance matrix at the final time step. Given the samples we had previously defined, we should expect to see positive covariances between variables 0 and 2, and positive covariances between 1 and 3. We should expect to see negative covariances between 0 and 1, 0 and 3, 1 and 2, and 2 and 3. We should also expect mixed covariances between 4 and all other variables, as well as mixed covariances between 5 and all other variables.
 
 ![Model Results 1](https://github.com/CarsonScott/onlinestats/blob/master/img/model_results_1.png)
 
