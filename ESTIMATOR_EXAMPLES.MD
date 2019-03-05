@@ -3,6 +3,7 @@
 In the first estimator example, we run a simple estimator 500 times with a constant observation of 3.
 
 	from onlinestats import Estimator
+	import matplotlib.pyplot as plt
 
 	steps = 500
 	observation = 3
@@ -33,7 +34,8 @@ As you can see the estimates eventually converge, more or less. The estimates os
 # Example #2
 
 In this example, we run a simple estimator 500 times with a constant observation of 3, just like in the first example.
-
+	
+	import matplotlib.pyplot as plt
 	from onlinestats import Estimator
 
 	steps = 500
