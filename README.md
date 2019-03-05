@@ -18,31 +18,29 @@ The acceleration of an estimator at any given time is the difference in value be
 
 __Example #1__
 
-In this example, we run a simple estimator 500 times with a constant observation.
+In this example, we run a simple estimator 500 times with a constant observation of 3.
 
+	steps = 500
+	observation = 3
 	estimator = Estimator(learning_rate=0.1, decay_rate=0.1)
 
 Here we have an estimator with a learning rate of 0.1, which dictates the rate of change of acceleration and adjustment, and a decay rate of 0.1, which dictates the rate of change of acceleration. Specifically, the decay rate determines how quickly acceleration approaches 0, which is analogous to the friction applied to a moving body. Eventually the velocity of a moving body falls to zero if more friction is applied to it than acceleration.
-
-	observation = 3
-
-We have a constant observation of 3, which means that at each point in time the estimator recieves a value of 3 as its observation, and thus should adjust its estimate to be as close to 3 as possible.
-
-	steps = 500
-
-The number of steps in this example is 500, meaning the estimator will receive 500 observations in total.
 	
 	estimates = []
 	for i in range(steps):
 		estimate = estimator.update(observation)
 		estimates.append(estimate)
 
-At each step we collect the current estimate. We may now graph the results.
+At each step we collect the current estimate. Because at each point the estimator observes 3, the estimates at each point should converge to 3. 
 
-	targets = [target for i in range(steps)]
+	targets = [observation for i in range(steps)]
 	plt.plot(targets, color='black')
 	plt.plot(estimates, color='red')
   	plt.show()
-	
+
+We graph the estimates as well as the targets over time. Since we used a constant observation in this example, the targets are represented by a straight line.
+
 Output:
-![](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1.png)
+![Estimator Results #1](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1.png)
+
+As you can see, the estimates eventually converge onto 3.
