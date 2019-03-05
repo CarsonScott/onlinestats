@@ -1,4 +1,6 @@
-# Example #1
+# Estimator Examples
+
+__Example #1__
 
 In the first estimator example, we run a simple estimator 500 times with a constant observation of 3.
 
@@ -31,7 +33,7 @@ As you can see the estimates eventually converge, more or less. The estimates os
 
 ---
 
-# Example #2
+__Example #2__
 
 In this example, we run a simple estimator 500 times with a constant observation of 3, just like in the first example.
 	
