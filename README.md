@@ -43,3 +43,6 @@ At each step we collect the current estimate. We may now graph the results.
 	plt.plot(targets, color='black')
 	plt.plot(estimates, color='red')
   	plt.show()
+	
+Output:
+![](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1.png)
