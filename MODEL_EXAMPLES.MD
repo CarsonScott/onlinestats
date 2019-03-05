@@ -1,4 +1,6 @@
-# Example #1
+# Model Examples
+
+__Example #1__
 
 In the first model example, we run a simple model of 6 variables 1000 times on a set of 2 samples.
 
