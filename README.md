@@ -43,4 +43,4 @@ We graph the estimates as well as the targets over time. Since we used a constan
 Output:
 ![Estimator Results #1](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1.png)
 
-As you can see, the estimates eventually converge onto 3.
+As you can see, the estimates and targets eventually converge, more or less. The estimates oscillate around the targets because the estimator is constantly making adjustments. This allows it to change readily if the targets begin to change, as is the case in most real-world applications.
