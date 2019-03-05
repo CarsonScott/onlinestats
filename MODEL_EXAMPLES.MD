@@ -7,8 +7,10 @@ In the first model example, we run a simple model of 6 variables 1000 times on a
 
 	steps = 1000
 	variables = 6
-	samples = [[1,0,1,0,1,0],
-			   [0,1,0,1,1,0]]
+	samples = [
+		[1,0,1,0,1,0],
+		[0,1,0,1,1,0]
+	]
 
 	model=Model(variables,
 		avg_estimator=Estimator(learning_rate=0.1, decay_rate=0.1, delta_limit=0.5),
