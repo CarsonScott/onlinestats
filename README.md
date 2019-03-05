@@ -1,6 +1,6 @@
 # OnlineStats
 
-OnlineStats is a python library for creating statistical models in real-time from streaming data.
+OnlineStats is a python library for generating robust statitistical models in real-time. Using a hierarchy of online approximation functions, OnlineStats creates covariance matrices 
 
 ## Estimators
 
@@ -12,6 +12,6 @@ An estimator is used to approximate the average of a given variable in real-time
 
 ## Models
 
-A model uses estimators to approximate the average and standard distribution of each variable in a set, as well as the covariance between every pair of variables. At each step, a statistical model updates the average and standard deviation estimators for each variable, and uses the resulting estimates to update a covariance estimator for each pair. The result is a covariance matrix that relates each variable with every other variable.
+A model uses estimators to approximate the average and standard distribution of each variable in a set, as well as the correlation between every pair of variables. At each step, a statistical model updates the average and standard deviation estimators for each variable, and uses the resulting estimates to update a correlation estimator for each pair. The result is a correlation matrix that relates each variable with every other variable.
 
 [Model Examples](https://github.com/CarsonScott/onlinestats/blob/master/MODEL_EXAMPLES.MD)
