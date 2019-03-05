@@ -18,3 +18,5 @@ The acceleration of an estimator at any given time is the difference in value be
 
 ***
 ## Statistical Models
+
+Statistical models use estimators to approximate the averages, standard distributions, and covariances of a set of variables over multiple time steps. 
