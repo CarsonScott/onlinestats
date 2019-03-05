@@ -1,4 +1,4 @@
-# Estimator Example #1
+# Example #1
 
 In this example, we run a simple estimator 500 times with a constant observation of 3.
 
@@ -25,4 +25,33 @@ We graph the estimates as well as the targets over time. Since we used a constan
 Output:
 ![Estimator Results #1](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1.png)
 
-As you can see, the estimates and targets eventually converge, more or less. The estimates oscillate around the targets because the estimator is constantly making adjustments. This allows it to change readily if the targets begin to change, as is the case in most real-world applications.
+As you can see the estimates eventually converge, more or less. The estimates oscillate around the targets because the estimator is constantly making adjustments. This allows it to change readily if the targets begin to change, as is the case in most real-world applications.
+
+# Example #2
+
+In this example, we run a simple estimator 500 times with a constant observation of 3, just like the first example.
+
+	steps = 500
+	observation = 3
+	estimator = Estimator(learning_rate=0.1, decay_rate=0.1, delta_limit=0.5)
+
+Here we have an estimator with a learning rate of 0.1 and a decay rate of 0.1, as well as a delta limit of 0.5, which restricts the magnitude of the acceleration at any given time. 
+	
+	estimates = []
+	for i in range(steps):
+		estimate = estimator.update(observation)
+		estimates.append(estimate)
+
+At each step we collect the current estimate. Because at each point the estimator observes 3, the estimates at each point should converge to 3. 
+
+	targets = [observation for i in range(steps)]
+	plt.plot(targets, color='black')
+	plt.plot(estimates, color='red')
+  	plt.show()
+
+We graph the estimates as well as the targets over time. Since we used a constant observation in this example, the targets are represented by a straight line.
+
+Output:
+![Estimator Results #1](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_2.png)
+
+As you can see the estimates eventually converge, and do so faster than those in the first example.  
