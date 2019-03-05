@@ -12,6 +12,6 @@ An estimator is used to approximate the average of a given variable in real-time
 
 ## Models
 
-A model is used to approximate the correlation coefficients between a set of variables. At each step, a statistical model updates the average and standard-deviation estimators for each variable, as well as the correlation estimator for each pair of variables. The result is a correlation matrix that iteratively improves to better fit the stream of observations.
+A statistical model is used to approximate the correlation coefficients between observable variables. At each step, a model calculates a revised correlation matrix by updating a set of estimators associated with each individual variable as well as each variable pair. Given a sufficient set of estimators, a model will converge on a correlation matrix that describes relationships between variables sufficiently well.
 
 [Model Examples](https://github.com/CarsonScott/onlinestats/blob/master/MODEL_EXAMPLES.MD)
