@@ -1,6 +1,6 @@
 # OnlineStats
 
-OnlineStats is a python library for generating robust statitistical models in real-time. Using a hierarchy of online approximation functions, OnlineStats creates covariance matrices 
+OnlineStats is a python library for generating robust statistical models in real-time.
 
 ## Estimators
 
