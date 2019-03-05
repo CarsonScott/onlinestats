@@ -58,8 +58,6 @@ We graph the estimates as well as the targets over time. Since we used a constan
 
 ![Estimator Results 2](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_2.png)
 
-As you can see the estimates eventually converge, and do so faster than those in the first example. The benefit of using a delta limit is that it keeps the acceleration from reaching too high of a value at any given time. This allows overcorrections to be fixed sooner than they would if the acceleration was not restricted. The downside of using a delta limit is of course that it takes longer to accelerate toward the target value, but this tradeoff tends to pay off in the long run. 
-
-For comparison, here is a graph of the first and second examples:
+As you can see the estimates eventually converge, and do so without overcorrecting as in the first example. The benefit of using a delta limit is that it keeps the acceleration from becoming too large at any given time. This can prevent overcorrections, or at least fix them quicker when they arise. Of course, there is a tradeoff as delta limits slow down the rate at which erroneous estimates can be corrected. A comparison between the results of the first and second example is shown below. 
 
 ![Estimator Results 1 and 2](https://github.com/CarsonScott/onlinestats/blob/master/img/estimator_results_1_and_2.png)
