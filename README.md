@@ -1,6 +1,6 @@
 # OnlineStats
 
-Onlinestats is a python library for creating statistical models of streaming data.
+OnlineStats is a python library for creating statistical models in real-time from streaming data.
 
 ## Estimators
 
