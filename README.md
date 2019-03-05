@@ -19,4 +19,5 @@ The acceleration of an estimator at any given time is the difference in value be
 ***
 ## Statistical Models
 
-Statistical models use estimators to approximate the averages, standard distributions, and covariances of a set of variables over multiple time steps. 
+A statistical model uses estimators to approximate the averages, standard distributions, and covariances of a set of variables over multiple time steps. At each step, the statistical model updates two estimators for each variable corresponding to its mean and standard deviation, and one estimator for each pair of variables corresponding to their covariance.
+
