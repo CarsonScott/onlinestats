@@ -14,7 +14,7 @@ The acceleration of an estimator at any given time is the difference in value be
 * Adjustment(t) ~ Adjustment(t-1) + Acceleration(t)
 * Estimate(t) ~ Estimate(t-1) + Adjustment(t)
 
-[Estimator Example #1](https://github.com/CarsonScott/onlinestats/blob/master/ESTIMATOR_EXAMPLES.MD)
+[Estimator Examples](https://github.com/CarsonScott/onlinestats/blob/master/ESTIMATOR_EXAMPLES.MD)
 
 ***
 ## Statistical Models
