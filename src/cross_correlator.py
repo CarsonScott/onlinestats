@@ -3,9 +3,13 @@ from .correlator import Correlator
 
 class CrossCorrelator(Correlator):
 	
-	def __init__(self, variables, delay, avg_estimator, dev_estimator, cor_estimator):
+	def __init__(self, variables, memory, avg_estimator, dev_estimator, cor_estimator):
 		super().__init__(variables, avg_estimator, dev_estimator, cor_estimator)
-		self.memories=[[0 for i in range(delay)] for j in range(variables)]
+		self.memories=[[0 for i in range(memory)] for j in range(variables)]
+		for i in range(len(self.cor_estimators)):
+			for j in range(len(self.cor_estimators[i])):
+				if self.cor_estimators[i][j]==None:
+					self.cor_estimators[i][j]=copy(cor_estimator)
 
 	def update_memory(self, index):
 		value=self.values[index]
@@ -13,7 +17,8 @@ class CrossCorrelator(Correlator):
 		del self.memories[index][0]
 
 	def update_correlation(self, index1, index2):
-		value1=self.memories[index1][0]
+		memories=self.memories[index1]
+		value1=sum([memories[i]/(len(memories)-i+1) for i in range(len(memories))])
 		value2=self.values[index2]
 		average1=self.averages[index1]
 		average2=self.averages[index2]
@@ -25,7 +30,6 @@ class CrossCorrelator(Correlator):
 		estimator=self.cor_estimators[index1][index2]
 		correlation=estimator.update(x)
 		self.correlations[index1][index2]=correlation
-		self.correlations[index2][index1]=correlation
 
 	def update(self, values):
 		for i in range(len(self.values)):
@@ -34,6 +38,6 @@ class CrossCorrelator(Correlator):
 			self.update_average(i)
 			self.update_deviation(i)
 		for i in range(len(self.values)):
-			for j in range(i, len(self.values)):
+			for j in range(len(self.values)):
 				self.update_correlation(i,j)
 		return self.correlations
