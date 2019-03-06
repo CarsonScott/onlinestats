@@ -1,6 +1,6 @@
 # OnlineStats
 
-OnlineStats is an online machine-learning library for creating robust statistical models of streaming data. OnlineStats utilizes continuous learning to adapt in real-time. Unlike alternative methods, the statistical models produced by OnlineStats do not suffer from the effects of overlearning, because the learning algorithm uses self-correction to withstand the obstacles faced during runtime.
+OnlineStats is an online machine-learning library for creating robust statistical models of streaming data. OnlineStats utilizes continuous learning to adapt in real-time. Unlike alternative methods, the statistical models produced by OnlineStats do not suffer from the effects of overlearning, because the learning algorithm uses self-correction to withstand the obstacles faced in an online environment.
 
 ## Estimators
 
