@@ -18,7 +18,8 @@ class CrossCorrelator(Correlator):
 
 	def update_correlation(self, index1, index2):
 		memories=self.memories[index1]
-		value1=sum([memories[i]/(len(memories)-i+1) for i in range(len(memories))])
+		total=sum([memories[i]/(len(memories)-i+1) for i in range(len(memories))])
+		value1=total/len(memories)
 		value2=self.values[index2]
 		average1=self.averages[index1]
 		average2=self.averages[index2]
