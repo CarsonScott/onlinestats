@@ -1,2 +1,3 @@
 from .estimator import Estimator
-from .model import Model
+from .correlator import Correlator
+from .cross_correlator import CrossCorrelator

@@ -1,6 +1,6 @@
 from .util import *
 
-class Model:
+class Correlator:
 
 	def __init__(self, variables, avg_estimator, dev_estimator, cor_estimator):
 		self.values=[]

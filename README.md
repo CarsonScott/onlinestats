@@ -12,6 +12,6 @@ An estimator is used to approximate the average of a given variable in real-time
 
 ## Models
 
-A model uses estimators to approximate the average and standard distribution of each variable in a set, as well as the correlation between every pair of variables. At each step, a statistical model updates the average and standard deviation estimators for each variable, and uses the resulting estimates to update a correlation estimator for each pair. The result is a correlation matrix that relates each variable with every other variable.
+A model uses estimators to approximate a correlation matrix given a set of variables. At each step, a model updates a set of estimators that together predict the correlation coefficient for each pair of variables. There are two types of models, namely correlators and cross-correlators. A cross-correlator does the same as a correlator, that is produces a correlation matrix, however the correlation coefficients are calculated at each time step between a set of variables at the current time and the same set of variables at some previous time delayed by a constant factor.
 
 [Model Examples](https://github.com/CarsonScott/onlinestats/blob/master/MODEL_EXAMPLES.MD)
