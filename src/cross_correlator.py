@@ -18,20 +18,21 @@ class CrossCorrelator(Correlator):
 
 	def update_correlation(self, index1, index2):
 		memories=self.memories[index1]
-		total=sum([memories[i]/(len(memories)-i+1) for i in range(len(memories))])
-		value1=total/len(memories)
-		value2=self.values[index2]
-		average1=self.averages[index1]
-		average2=self.averages[index2]
-		deviation1=self.deviations[index1]
-		deviation2=self.deviations[index2]
-		numerator=(value1-average1)*(value2-average2)
-		denominator=deviation1*deviation2
-		x=numerator/denominator if denominator!=0 else numerator
+		total=0
+		for i in range(len(memories)):
+			value1=memories[i]
+			value2=self.values[index2]
+			average1=self.averages[index1]
+			average2=self.averages[index2]
+			deviation1=self.deviations[index1]
+			deviation2=self.deviations[index2]
+			numerator=(value1-average1)*(value2-average2)
+			denominator=deviation1*deviation2
+			data=numerator/denominator if denominator!=0 else numerator
+			total+=data/(len(memories)-i+1)
 		estimator=self.cor_estimators[index1][index2]
-		correlation=estimator.update(x)
+		correlation=estimator.update(total)
 		self.correlations[index1][index2]=correlation
-
 	def update(self, values):
 		for i in range(len(self.values)):
 			self.update_memory(i)
