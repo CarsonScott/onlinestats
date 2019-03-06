@@ -33,6 +33,7 @@ class CrossCorrelator(Correlator):
 		estimator=self.cor_estimators[index1][index2]
 		correlation=estimator.update(total)
 		self.correlations[index1][index2]=correlation
+
 	def update(self, values):
 		for i in range(len(self.values)):
 			self.update_memory(i)
@@ -43,3 +44,15 @@ class CrossCorrelator(Correlator):
 			for j in range(len(self.values)):
 				self.update_correlation(i,j)
 		return self.correlations
+
+	def predict(self):
+		predictions=[]
+		for i in range(len(self.values)):
+			prediction=0
+			for j in range(len(self.values)):
+				correlation=self.correlations[j][i]
+				memories=self.memories[j]
+				for k in range(len(memories)):
+					prediction+=memories[k]*correlation/(len(memories)-k+1)
+			predictions.append(prediction)
+		return predictions
