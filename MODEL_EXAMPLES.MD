@@ -34,7 +34,7 @@ We then update the correlator 1000 times by iterating through the set of samples
 
 We graph the correlation matrix at the final time step. Given the samples we had previously defined, we should expect to see high positive correlations between 0 and 2, and high positive correlations between 1 and 3. We should expect to see high negative correlations between 0 and 1, 0 and 3, 1 and 2, and 2 and 3. We should also expect low correlations between 4 and all other variables, as well as low correlations between 5 and all other variables.
 
-![Model Results 1](https://github.com/CarsonScott/onlinestats/blob/master/img/correlator_results_1.png)
+![Model Results 1](https://github.com/CarsonScott/onlinestats/blob/master/img/model_results_1.png)
 
 As you can see, the correlations between pairs of variables are as expected.
 
@@ -72,6 +72,6 @@ In this example, we run a simple cross-correlator of 3 variables 300 times on a 
 	
 We graph the correlation matrix at the final time step. Unlike the correlation matrix produced by a correlator, cross-correlators are order-dependent. This means that the correlation between 0 and 1 is different than that of 1 and 0. With that in mind, we should expect to see positive correlations between 0 and 1, 0 and 2, 1 and 2, 2 and 2, and 2 and 0. All the rest are expected to be negative.
 
-![Model Results 2](https://github.com/CarsonScott/onlinestats/blob/master/img/correlator_results_2.png)
+![Model Results 2](https://github.com/CarsonScott/onlinestats/blob/master/img/model_results_2.png)
 
 As you can see, the results are as expected.
